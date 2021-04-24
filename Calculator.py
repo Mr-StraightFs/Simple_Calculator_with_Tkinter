@@ -10,25 +10,66 @@ def button_click(number):
     if number == "clear" :
         e.delete(0, END)
         return
-
     current= e.get()
     e.delete(0,END)
     e.insert(0,str(current)+str(number))
     return
 
+
 def button_add():
+    global operation
     global f_number
-    f_number = int(e.get())
+    operation = "add"
+    f_number = float(e.get())
     e.delete(0,END)
-    # sum = current + int(e.get())
-    # e.insert(0,sum)
+    return
+second = float(format(5.30, '.2f'))
+print (type(second))
+
+def button_sub():
+    global operation
+    global f_number
+    operation = "subs"
+    f_number = float(e.get())
+    e.delete(0,END)
+    return
+
+def button_mult ():
+    global operation
+    global f_number
+    operation = "mult"
+    f_number = float(e.get())
+    e.delete(0,END)
+    return
+
+def button_div():
+    global operation
+    global f_number
+    operation = "div"
+    f_number = float(e.get())
+    e.delete(0,END)
     return
 
 def button_equal ():
-    second = int(e.get())
+    second = float(e.get())
     e.delete(0, END)
-    sum = f_number + second
-    e.insert(0,sum)
+
+    if operation == "add" :
+        sum = format ((f_number + second) , '.2f')
+        e.insert(0, sum)
+    elif operation == "mult" :
+        multipl = format ((f_number * second) , '.2f')
+        e.insert(0, multipl)
+    elif operation == "div" :
+        divide = f_number / second
+        e.insert(0, format(divide ,'.2f'))
+    elif operation == "subs" :
+        sub = format ((f_number - second) , '.2f')
+        e.insert(0, sub)
+    else:
+        e.insert(0, "You need to choose an operation , Try again")
+        e.delete(0, END)
+
     return
 
 button_1 = Button(root,text="1",padx=40,pady=20,command=lambda: button_click(1))
@@ -42,7 +83,10 @@ button_8 = Button(root,text="8",padx=40,pady=20,command=lambda: button_click(8))
 button_9 = Button(root,text="9",padx=40,pady=20,command=lambda: button_click(9))
 button_0 = Button(root,text="0",padx=40,pady=20,command=lambda: button_click(0))
 
+button_sub = Button(root,text="-",padx=38,pady=20,command= button_sub)
 button_add = Button(root,text="+",padx=38,pady=20,command= button_add)
+button_mult = Button(root,text="*",padx=38,pady=20,command= button_mult)
+button_div = Button(root,text="/",padx=38,pady=20,command= button_div)
 button_equal = Button(root,text="=",padx=91,pady=20,command= button_equal)
 button_clear = Button(root,text="clear",padx=79,pady=20,command=lambda: button_click("clear"))
 
@@ -62,6 +106,9 @@ button_9.grid(row=1,column=2)
 button_0.grid(row=4,column=0)
 button_clear.grid(row=4,column=1,columnspan=2)
 button_add.grid(row=5,column=0)
-button_equal.grid(row=5,column=1,columnspan=2)
+button_sub.grid(row=6,column=0)
+button_mult.grid(row=5,column=1)
+button_div.grid(row=5,column=2)
+button_equal.grid(row=6,column=1,columnspan=2)
 
 root.mainloop()
