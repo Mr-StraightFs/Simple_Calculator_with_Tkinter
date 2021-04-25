@@ -51,24 +51,24 @@ def button_div():
     return
 
 def button_equal ():
-    second = float(e.get())
-    e.delete(0, END)
-
-    if operation == "add" :
-        sum = format ((f_number + second) , '.2f')
-        e.insert(0, sum)
-    elif operation == "mult" :
-        multipl = format ((f_number * second) , '.2f')
-        e.insert(0, multipl)
-    elif operation == "div" :
-        divide = f_number / second
-        e.insert(0, format(divide ,'.2f'))
-    elif operation == "subs" :
-        sub = format ((f_number - second) , '.2f')
-        e.insert(0, sub)
-    else:
-        e.insert(0, "You need to choose an operation , Try again")
+    try :
+        second = float(e.get())
         e.delete(0, END)
+        if operation == "add":
+            sum = format((f_number + second), '.2f')
+            e.insert(0, sum)
+        elif operation == "mult":
+            multipl = format((f_number * second), '.2f')
+            e.insert(0, multipl)
+        elif operation == "div":
+            divide = f_number / second
+            e.insert(0, format(divide, '.2f'))
+        else :
+            sub = format((f_number - second), '.2f')
+            e.insert(0, sub)
+    except:
+        e.insert(0, "Choose a correct operation , Try again")
+
 
     return
 
